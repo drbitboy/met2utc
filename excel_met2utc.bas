@@ -1,6 +1,6 @@
 Function met2utc(met As Double) As String
     ' Ensures the formula recalculates when sheet data changes
-    Application.Volatile 
+    Application.Volatile
 
     Dim ws As Worksheet
     Dim xRange As Range, yRange As Range, configRange As Range
@@ -19,7 +19,7 @@ Function met2utc(met As Double) As String
 
     ' 1. Set worksheet
     Set ws = ThisWorkbook.Sheets("sclk_data")
-    
+
     ' 2. Dynamically set ranges based on text definitions in A2, B2, and C2
     On Error GoTo RangeError
     Set xRange = ws.Range(ws.Range("A2").Text)
@@ -28,7 +28,7 @@ Function met2utc(met As Double) As String
     On Error GoTo 0
 
     ' 3. Retrieve Date/Time Offset and Scale Factor from the evaluated config range
-    offsetVal = CDbl(configRange.Cells(1).Value) 
+    offsetVal = CDbl(configRange.Cells(1).Value)
     scaleFactor = configRange.Cells(2).Value
 
     ' Check for division by zero on the scale factor
@@ -83,7 +83,7 @@ Function met2utc(met As Double) As String
               Format(doy, "000") & _
               Format(finalYDate, "/hh:mm:ss") & _
               fracString
-              
+
     Exit Function
 
 RangeError:
